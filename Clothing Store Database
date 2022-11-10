@@ -1,0 +1,15 @@
+-- Create a clothing store database
+
+CREATE TABLE clothing (id INTEGER PRIMARY KEY, name TEXT, size TEXT, gender TEXT, quantity INTEGER);
+
+INSERT INTO clothing VALUES (1,"T Shirt", "Medium", "M", 2);
+INSERT INTO clothing VALUES (2, "Jeans", "32", "M", 1);
+INSERT INTO clothing VALUES (3, "Hats", "OS", "Unisex", 2);
+INSERT INTO clothing VALUES (4, "Socks", "OS", "Unisex", 4);
+INSERT INTO clothing VALUES (5, "Sweatshirt", "L", "W", 3);
+INSERT INTO clothing VALUES (6, "Button Down", "S", "Unisex", 3);
+INSERT INTO clothing VALUES (7, "Ties", "OS", "Unisex", 5);
+
+-- display the database by quantity
+SELECT * FROM clothing 
+ORDER BY quantity;
