@@ -101,3 +101,8 @@ SELECT COUNT(*),
     END as NY_Giants_SB_Wins
 FROM superbowls
 GROUP BY NY_Giants_SB_Wins;
+
+--Point Differential by SB
+SELECT SB, WINNER,
+SUM(winner_pts - loser_pts) AS "POINT DIFFERENTIAL"
+FROM superbowls GROUP BY SB;
