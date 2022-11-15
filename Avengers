@@ -1,0 +1,63 @@
+CREATE TABLE avengers (id INTEGER PRIMARY KEY,
+    name TEXT,
+    superpower TEXT,
+    actor TEXT);
+
+INSERT INTO avengers (name, superpower, actor)
+    VALUES ('Iron Man', 'Genius', 'Robert Downey Jr.');
+INSERT INTO avengers (name, superpower, actor)
+    Values ('Spider-man', 'Mutated Human', 'Tom Holland');
+INSERT INTO avengers (name, superpower, actor)
+    Values ('Captain America', 'Superhuman', 'Chris Evans');
+INSERT INTO avengers (name, superpower, actor)
+    Values ('Thor', 'Demigod', 'Chris Hemsworth');
+INSERT INTO avengers (name, superpower, actor)
+    Values ('Black Panther', 'Peak Human', 'Chadwick Boseman');
+    
+    
+CREATE TABLE avengers_movies (id INTEGER PRIMARY KEY,
+    movies_id INTEGER,
+    title TEXT);
+    
+INSERT INTO avengers_movies (movies_id, title)
+    VALUES (1, "The Avengers");
+INSERT INTO avengers_movies (movies_id, title)
+    VALUES (2, "Avengers: Age of Ultron");
+INSERT INTO avengers_movies (movies_id, title)
+    VALUES (3, "Avengers: Infinity War");
+INSERT INTO avengers_movies (movies_id, title)
+    VALUES (4, "Avengers: End Game");
+
+-- movies together
+CREATE TABLE avengers_crossover (id INTEGER PRIMARY KEY,
+    avenger1_id INTEGER,
+    avenger2_id INTEGER,
+    avenger3_id INTEGER,
+    avenger4_id INTEGER,
+    avenger5_id INTEGER);
+
+INSERT INTO avengers_crossover (avenger1_id, avenger2_id, avenger3_id, avenger4_id, avenger5_id) VALUES (1, 3, 4, NULL, NULL);
+INSERT INTO avengers_crossover (avenger1_id, avenger2_id, avenger3_id, avenger4_id, avenger5_id) VALUES (1, 3, 4, NULL, NULL);
+INSERT INTO avengers_crossover (avenger1_id, avenger2_id, avenger3_id, avenger4_id, avenger5_id) VALUES (1, 2, 3, 4, 5);
+INSERT INTO avengers_crossover (avenger1_id, avenger2_id, avenger3_id, avenger4_id, avenger5_id) VALUES (1, 2, 3, 4, 5);
+
+-- query
+SELECT * FROM avengers;
+
+SELECT * FROM avengers_movies;
+
+SELECT * FROM avengers_crossover;
+
+SELECT avengers_movies.title, a.name, b.name, c.name, d.name, e.name FROM avengers_crossover
+    JOIN avengers_movies
+    ON avengers_movies.movies_id = avengers_crossover.id
+    LEFT OUTER JOIN avengers a
+    ON avengers_crossover.avenger1_id = a.id
+    LEFT OUTER JOIN avengers b
+    ON avengers_crossover.avenger2_id = b.id
+    LEFT OUTER JOIN avengers c
+    ON avengers_crossover.avenger3_id = c.id
+    LEFT OUTER JOIN avengers d
+    ON avengers_crossover.avenger4_id = d.id
+    LEFT OUTER JOIN avengers e
+    ON avengers_crossover.avenger5_id = e.id
